@@ -1,19 +1,19 @@
 import { add, throws } from "./index";
 
-describe('Testing the add() function', () => {
-  test('Adding 1 and 1, add(1, 1)', () => {
+describe('Testing that with the add() function', () => {
+  test('1+1=2', () => {
     expect(add(1,1)).toBe(2);
   });
 
-  test('Adding null and 1, add(null, 1)', () => {
+  test('null+1=1', () => {
     expect(add(null,1)).toBe(1);
   });
 
-  test('Empty call to function, add()', () => {
+  test('an empty call equals NaN', () => {
     expect(add()).toBeNaN();
   });
 
-  test('Adding a positive number and a negative number, add(1, -1)', () => {
+  test('1+(-1)=0', () => {
     expect(add(1,-1)).toBe(0);
   });
 });
