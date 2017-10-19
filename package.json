@@ -18,5 +18,18 @@
     "babel-watch": "2.0.7",
     "jest": "21.2.1",
     "supertest": "3.0.0"
+  },
+  "babel": {
+    "env": {
+      "production": {
+        "plugins": ["transform-es2015-modules-commonjs"]
+      },
+      "development": {
+        "plugins": ["transform-es2015-modules-commonjs"]
+      },
+      "test": {
+        "plugins": ["transform-es2015-modules-commonjs"]
+      }
+    }
   }
 }
