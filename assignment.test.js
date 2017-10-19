@@ -22,4 +22,11 @@ describe('Testing that the throws function', () => {
   test('throws an error', () => {
     expect(throws).toThrowError();
   });
+  test('gives a specific message when throwing error', () => {
+    expect(throws).toThrowError('You need to mock me');
+  });
+
+  test('does not throw any more with mock', () => {
+    expect(throws).not.toThrowError();
+  });
 });
