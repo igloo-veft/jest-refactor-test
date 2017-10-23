@@ -1,5 +1,6 @@
 import { add, throws, loop } from './index';
 import * as Module from './index';
+import mongoose from mongoose;
 
 //jest.mock('./index', () => ({
 //  throws: jest.fn(),
