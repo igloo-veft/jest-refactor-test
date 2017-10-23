@@ -1,6 +1,6 @@
 import { add, throws, loop } from './index';
 import * as Module from './index';
-import mongoose from mongoose;
+import mongoose from 'mongoose';
 
 //jest.mock('./index', () => ({
 //  throws: jest.fn(),
@@ -36,7 +36,7 @@ describe('Testing that the throws function', () => {
     expect(throws).toThrowError('You need to mock me');
   });
 
-  test('does not throw any more with mock', () => {
+  test('does not throw any more when mocked', () => {
     Module.throws = jest.fn();
     expect(throws).not.toThrowError();
   });
