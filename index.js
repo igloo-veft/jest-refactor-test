@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose, {Schema} from 'mongoose';
+import { add } from './add';
 
 /* DO NOT REFACTOR THIS CODE */
-export const add = (a, b) => a + b;
+//export const add = (a, b) => a + b;
 
 export const throws = n => {
   throw new Error('You need to mock me');
