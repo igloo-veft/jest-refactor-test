@@ -1,5 +1,7 @@
-import { add, throws, loop } from './index';
+import { throws, loop } from './index';
+import { add } from './add';
 import * as Module from './index';
+import * as addModule from './add';
 import mongoose from 'mongoose';
 
 //jest.mock('./index', () => ({
@@ -50,16 +52,25 @@ describe('loop()', () => {
   });
 
   test('add() gets called 1 time', () => {
-    const spy = jest.spyOn(Module, 'add');
+    const spy = jest.spyOn(addModule, 'add');
     loop(1);
     expect(spy).toHaveBeenCalledTimes(1);
+    spy.mockReset();
   });
 
   test('add() gets called 3 times', () => {
-    const spy = jest.spyOn(Module, 'add');
+    const spy = jest.spyOn(addModule, 'add');
     loop(3);
     expect(spy).toHaveBeenCalledTimes(3);
-  })
+    spy.mockReset();
+  });
+
+  test('add() gets called 6 times', () => {
+    const spy = jest.spyOn(addModule, 'add');
+    loop(6);
+    expect(spy).toHaveBeenCalledTimes(6);
+    spy.mockReset();
+  });
 });
 
 describe('Testing the web service', () => {
