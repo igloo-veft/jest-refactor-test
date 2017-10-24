@@ -18,14 +18,17 @@ let mongoServer;
 let server;
 
 beforeAll(() => {
-  mongoServer = new mongo();
-  mongoServer.getConnectionString().then((mongoUri) => {
-    mongoose
-      .connect(mongoUri, {
-        useMongoClient: true
-      }).then(db => {
-        server = index(db); // TODO: Change to app
-      });
+  return new Promise((resolve, reject) => {
+    mongoServer = new mongo();
+    mongoServer.getConnectionString().then((mongoUri) => {
+      mongoose
+        .connect(mongoUri, {
+          useMongoClient: true
+        }).then(db => {
+          server = index(db); // TODO: Change to app
+          resolve();
+        });
+    });
   });
 });
 
@@ -92,9 +95,17 @@ describe('loop()', () => {
 });
 
 describe('Testing the web service', () => {
-
+  //TODO does the webservice exists or responds
 });
 
 describe('Testing output from GET', () => {
-
+  test('test', done => {
+    request(server)
+      .get('/')
+      .expect(200)
+      .then(res => {
+        console.log(res.body).toEqual({});
+        done();
+      });
+  });
 });
