@@ -19,13 +19,12 @@ export const loop = n => {
   return sum;
 };
 
-
-mongoose.Promise = global.Promise;
 export const employeeSchema = Schema({
   name: String,
   jobTitles: {type: [String]},
 });
 
+mongoose.Promise = global.Promise;
 mongoose
    .connect('mongodb://Makus:Makus@ds125914.mlab.com:25914/veft-test', {
     useMongoClient: true,

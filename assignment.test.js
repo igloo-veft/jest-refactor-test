@@ -97,6 +97,11 @@ describe('loop()', () => {
 
 describe('Testing the web service', () => {
   //TODO does the webservice exists or responds
+  test('Doest server respond', () => {
+	  request(server)
+	  .get('/')
+      .expect(200)
+      });
 });
 
 describe('Testing output from GET with snapshot', () => {
@@ -117,8 +122,9 @@ describe('Testing output from GET with snapshot', () => {
         request(server)
       })
     )}
+	Promise.all(promises).then(cb);
   };
-  Promise.all(promises).then(cb);
+  
 
   test('should return 3 employees when 3 employess have been created', done => {
     createEmployees(3, () => {
