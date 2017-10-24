@@ -3,6 +3,7 @@ import { add } from './add';
 import * as Module from './index';
 import * as addModule from './add';
 import mongoose from 'mongoose';
+import request from 'supertest';
 
 //jest.mock('./index', () => ({
 //  throws: jest.fn(),
