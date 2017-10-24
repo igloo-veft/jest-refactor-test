@@ -4,6 +4,7 @@ import * as Module from './index';
 import * as addModule from './add';
 import mongoose from 'mongoose';
 import request from 'supertest';
+import mongo from 'mongodb-memory-server';
 
 //jest.mock('./index', () => ({
 //  throws: jest.fn(),
@@ -11,6 +12,22 @@ import request from 'supertest';
 //    return a+b;
 //  }),
 //}));
+
+mongoose.Promise = global.Promise;
+let mongoServer;
+let server;
+
+beforeAll(() => {
+  mongoServer = new mongo();
+  mongoServer.getConnectionString().then((mongoUri) => {
+    mongoose
+      .connect(mongoUri, {
+        useMongoClient: true
+      }).then(db => {
+        server = index(db); // TODO: Change to app
+      });
+  });
+});
 
 describe('Testing that with the add() function', () => {
   test('1+1=2', () => {

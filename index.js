@@ -20,6 +20,9 @@ export const loop = n => {
 /* DO NOT REFACTOR THIS CODE */
 
 /* SERVER CODE TO REFACTOR */
+
+// TODO make an app.js and a new index.js
+// TODO fix mongodb connection string
 mongoose.Promise = global.Promise;
 export const employeeSchema = Schema({
   name: String,
