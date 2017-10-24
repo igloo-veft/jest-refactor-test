@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose, {Schema} from 'mongoose';
 import { add } from './add';
+import app from './app';
 
 /* DO NOT REFACTOR THIS CODE */
 //export const add = (a, b) => a + b;
@@ -17,12 +18,8 @@ export const loop = n => {
   }
   return sum;
 };
-/* DO NOT REFACTOR THIS CODE */
 
-/* SERVER CODE TO REFACTOR */
 
-// TODO make an app.js and a new index.js
-// TODO fix mongodb connection string
 mongoose.Promise = global.Promise;
 export const employeeSchema = Schema({
   name: String,
@@ -30,15 +27,10 @@ export const employeeSchema = Schema({
 });
 
 mongoose
-  .connect('mongodb://<yourDatabaseUrlHere>/veft-testing', {
+   .connect('mongodb://Makus:Makus@ds125914.mlab.com:25914/veft-test', {
     useMongoClient: true,
   })
   .then(db => {
-    const Employee = db.model('Employee', employeeSchema);
-    const app = express();
-    app.get('/', (req, res) => {
-      Employee.find({}).exec((err, data) => res.json({data}));
-    });
-    app.listen(3000, () => console.log('Server running on port 3000'));
+	  const server = app(db);
+	  server.listen(3000, () => console.log('Server running on port 3000'));
   });
-/* SERVER CODE TO REFACTOR */

@@ -5,6 +5,7 @@ import * as addModule from './add';
 import mongoose from 'mongoose';
 import request from 'supertest';
 import mongo from 'mongodb-memory-server';
+import app from './app';
 
 //jest.mock('./index', () => ({
 //  throws: jest.fn(),
@@ -25,7 +26,7 @@ beforeAll(() => {
         .connect(mongoUri, {
           useMongoClient: true
         }).then(db => {
-          server = index(db); // TODO: Change to app
+          server = app(db);
           resolve();
         });
     });
