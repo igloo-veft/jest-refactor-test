@@ -98,14 +98,37 @@ describe('Testing the web service', () => {
   //TODO does the webservice exists or responds
 });
 
-describe('Testing output from GET', () => {
+describe('Testing output from GET with snapshot', () => {
   test('test', done => {
     request(server)
       .get('/')
       .expect(200)
       .then(res => {
-        console.log(res.body).toEqual({});
+        expect(res.body).toEqual({Employees:[]});
         done();
       });
+  });
+
+  const createEmployees = (n, cb) => {
+    let promises = [];
+    for(let i = 0; i<n; i++) {
+      promises.push(new Promise((resolve, reject) => {
+        request(server)
+      })
+    )}
+  };
+  Promise.all(promises).then(cb);
+
+  test('should return 3 employees when 3 employess have been created', done => {
+    createEmployees(3, () => {
+    request(server)
+      .get('/')
+      .expect(200)
+      .then(res => {
+        const resultWithoutIds = res.body.Employees.map(({name, jobtitle}) => ({name, jobtitle}));
+        expect(resultWithoutIds).toMatchSnapshot('should return 3 employees when 3 employess have been created');
+        done();
+      });
+    });
   });
 });
