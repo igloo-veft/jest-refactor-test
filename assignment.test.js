@@ -33,6 +33,12 @@ beforeAll(() => {
   });
 });
 
+/*
+afterEach(() => {
+	return new Promise
+	
+});*/
+
 describe('Testing that with the add() function', () => {
   test('1+1=2', () => {
     expect(add(1,1)).toBe(2);
@@ -105,12 +111,12 @@ describe('Testing the web service', () => {
 });
 
 describe('Testing output from GET with snapshot', () => {
-  test('test', done => {
+  test('Should return 200 if empty', done => {
     request(server)
-      .get('/')
+      .get('/employee')
       .expect(200)
       .then(res => {
-        expect(res.body).toEqual({Employees:[]});
+        expect(res.body).toEqual({Employee:[]});
         done();
       });
   });
